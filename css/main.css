@@ -11,6 +11,22 @@
    Base styles: opinionated defaults
    ========================================================================== */
 
+/* ==========================================================================
+   TABLE OF CONTENTS
+
+    30-108 = Basic File Structuring 
+
+    109-272 = Layout
+
+    273-295 = Modules
+
+    296-308 = Theme
+
+    309-345 = Main nav & Colours and Icons
+
+    345-515 = More Basic File Structuring
+   ========================================================================== */
+
 html {
   color: #222;
   font-family: 'Open Sans';
@@ -94,32 +110,59 @@ img {
    Layout
    ========================================================================== */
 
-div, section, footer, header {
-  border: 1px solid #ccc;
+
+
+.row{
+  display:grid;
 }
 
 .column {
-  background-color: rgb(235, 191, 96);
+  position: relative;
+  /* background-color: rgb(235, 191, 96); */
 }
 
 .heading{
   text-align:center;
+  font-family: Ubuntu, Verdana, Geneva, Tahoma, sans-serif;
+  font-weight:400;
 }
 
+.tagline{
+  margin-top: -0.8rem;
+  font-size: 0.7rem;
+  text-align:center;
+  color:rgba(128, 128, 128);
+}
+
+.logo{
+  max-height: 2.5rem;
+  position: absolute;
+  bottom:0.1;
+}
 
 
 /* Small only */
 
-@media screen and (max-width:39.9375em) {}
+@media screen and (max-width:39.9375em) {
+  .logo{
+    max-height: 3rem;
+    position: static;
+  }
+  .s-hide{
+    display:none;
+  }
+}
 
 /* Medium and up */
 
 @media screen and (min-width:40em) {
   .row {
-    display:grid;
   width: 85vw;
   max-width: 70rem;
   margin: 0 auto;
+  column-gap: 1.5rem;
+  row-gap: 1.5rem;
+  margin: 0 auto 3rem auto;
 }
 
 .m-col-2 {
@@ -142,10 +185,33 @@ div, section, footer, header {
   grid-template-columns: 1fr 2fr;
 }
 
+.row-span {
+  grid-column-start: 1;
+  grid-column-end: -1;
+}
+
 .span-full {
   grid-column-start: 1;
   grid-column-end: -1;
 }
+
+.main-nav{
+  display: flex;
+  flex-direction:row;
+}
+
+.main-nav__item {
+  padding: 4rem 1rem 0rem 0.5rem;
+  line-height: 2rem;
+  font-size: 0.8rem;
+  text-align: left;
+  background-color: rgb(184, 184, 184);
+  background-position-x: center;
+  background-position-y: center;
+  background-size: 2.3rem, 1.4rem;
+
+}
+
 
 
 }
@@ -156,6 +222,13 @@ div, section, footer, header {
   .special-picture {
     grid-column-start: 1;
     grid-column-end: -1;
+  }
+  .special-picture img{
+    max-height: 20rem;
+  }
+
+  .m-hide{
+    display:none;
   }
 }
 
@@ -185,20 +258,41 @@ div, section, footer, header {
   .l-col-6 {
     grid-template-columns: repeat(5, 1fr);
 }
-
+.l-hide{
+  display:none;
+}
 }
 
 /* Large only */
 
-@media screen and (min-width:64em)and(max-width:74.9375em) {}
+@media screen and (min-width:64em)and(max-width:74.9375em) {
+
+}
 
 
 /* ==========================================================================
    Modules
    ========================================================================== */
+.page__slider {
+  background-color: rbg(230, 230, 230);
+}
 
+.page__slider img{
+  height: 25vh;
+}
 
+.project{
+  position: relative;
+  margin: 0;
+}
 
+.project__caption{
+  position: absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  background-color: rgb(128, 128, 128)
+}
 /* ==========================================================================
    Theme
    ========================================================================== */
@@ -212,8 +306,42 @@ div, section, footer, header {
   background-color: #16242f;
 }
 
+/* Main nav and colors & icons--------------------------------------->*/
+
+.main-nav__item:nth-child(1) {
+  background-color: #25c389;
+  background-image: url(../img/img_icon_circle.svg), url(../img/home.png);
+}
 
 
+.main-nav__item:nth-child(2) {
+  background-color: #ffb901;
+  background-image: url(../img/img_icon_circle.svg), url(../img/pages.png);
+}
+
+
+.main-nav__item:nth-child(3) {
+  background-color: #de6262;
+  background-image: url(../img/img_icon_circle.svg), url(../img/img_icon_bullhorn.svg);
+}
+
+
+.main-nav__item:nth-child(4) {
+  background-color: #1691bd;
+  background-image: url(../img/img_icon_circle.svg), url(../img/portfolio.png);
+}
+
+
+.main-nav__item:nth-child(5) {
+  background-color: #166ba2;
+  background-image: url(../img/img_icon_circle.svg), url(../img/contact.png);
+}
+
+a{
+  color:white;
+  text-decoration: none;
+  text-align: center;
+}
 
 /*
  * Hide visually and from screen readers
@@ -384,4 +512,3 @@ div, section, footer, header {
     page-break-after: avoid;
   }
 }
-
